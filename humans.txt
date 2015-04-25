@@ -3,13 +3,13 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    <Sagar Jhobalia> -- <freeloader> -- <@sagar_jhobalia>
 
 # THANKS
 
-    <name>
+    <H5BP team>
 
 # TECHNOLOGY COLOPHON
 
     CSS3, HTML5
-    Apache Server Configs, jQuery, Modernizr, Normalize.css
+    jQuery, Modernizr, Normalize.css
