@@ -94,9 +94,22 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-
-
+.css-fb-banner{
+    background-color: #3C5C98;
+    background-repeat: repeat-x;
+    width: 85%;
+    height: 40px;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.css-fb-banner:after{
+    content: 'facebook';
+    color: white;
+    margin-left: 1em;
+    font: 700 24px/1.3em sans-serif;
+}
 
 
 
