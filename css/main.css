@@ -110,7 +110,35 @@ textarea {
     margin-left: 1em;
     font: 700 24px/1.3em sans-serif;
 }
+.time-container{
+    margin-left: 5em;
+    float: left;
+}
+.events-container{
+    float: left;
+    background-color: #bababa;
+    width: 60%;
+    height: 450px;
+    margin-top: 18px;
+    margin-left: 8px;
 
+}
+.event{
+    background-color: white;
+    float:left;
+    border: 1px solid black;
+    border-left: 5px solid #175BDA;
+    /*height of event = (duration in mins * 10%)/30mins */
+    height: 15%;
+    /* width of event = 90%/(num of colliding events) */
+    width: 30%;
+    /*6.3% for every 30 mins*/
+    /*margin-top: 6.3%;*/
+}
+.event > p{
+    margin: 3px;
+    line-height: 1.3em;
+}
 
 
 
