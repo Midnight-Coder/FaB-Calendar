@@ -110,6 +110,10 @@ textarea {
     margin-left: 1em;
     font: 700 24px/1.3em sans-serif;
 }
+.container{
+    width: 1280px;
+    height: 720px;
+}
 .time-container{
     margin-left: 5em;
     float: left;
