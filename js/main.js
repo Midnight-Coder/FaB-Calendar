@@ -6,14 +6,17 @@ function layOutDay(events) {
         return a.start - b.start;
     });
 
-    //Calculate the height of each event card
-    evalHeight(events);
+    //Calculate the margin-top for each event card
+    evalMarginTop(events);
 
     //Group all overlapping events together -> Aids width calculation
     events = resolveConflicts(events);
 
     //Calculate the width of each event card
     evalWidth(events);
+
+    //Write markup to it
+    markup = makeCalendarEventCards(events);
 }
 function resolveConflicts(list){
     //Group all overlapping events together
@@ -33,10 +36,10 @@ function resolveConflicts(list){
     resolvedList.push(overlap);
     return resolvedList;
 }
-function evalWidth(list){
+function evalWidth(nestedList){
     var k = 90 * 100,   //*100 -> optimize for rounding to second decimal place
         width;
-    list.forEach(function(groupOfEvents){
+    nestedList.forEach(function(groupOfEvents){
         //Each event in the group has to have the same width which totals to W (W=90% based on our styles)
         //Round to the nearest hundredth
         width = (Math.ceil(k/groupOfEvents.length))/100;
@@ -45,13 +48,16 @@ function evalWidth(list){
         }
     });
 }
-function evalHeight(list){
+function evalMarginTop(list){
     var k = 6.3 * 100,   //*100 -> optimize for rounding to second decimal place
-        height;
+        marginTop;
     list.forEach(function(entry){
-        //Eval height as the distance for 9:00 AM (00). Every 30 min slot = 6.3% margin-top
-        height = (entry.start*k)/30;
+        //Eval marginTop as the distance for 9:00 AM (00). Every 30 min slot = 6.3% margin-top
+        marginTop = (entry.start*k)/30;
         //Round to the nearest hundredth
-        entry.height = Math.ceil(height)/100;
+        entry.marginTop = Math.ceil(marginTop)/100;
     });
+}
+function makeCalendarEventCards(nestedList){
+
 }
