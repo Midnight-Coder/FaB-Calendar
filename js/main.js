@@ -9,6 +9,9 @@ function layOutDay(events) {
     //Calculate the margin-top for each event card
     evalMarginTop(events);
 
+    //Calculate the height for each event card
+    evalHeight(events);
+
     //Group all overlapping events together -> Aids width calculation
     events = resolveConflicts(events);
 
@@ -58,6 +61,24 @@ function evalMarginTop(list){
         entry.marginTop = Math.ceil(marginTop)/100;
     });
 }
-function makeCalendarEventCards(nestedList){
+function evalHeight(list){
+    var height;
+    list.forEach(function(entry){
+        //Eval height as the distance from (end-start). Every 30 min slot = 10% height
 
+        //Round to nearest tens
+        height = (Math.round((entry.end - entry.start)/10))*10
+        height = (height)/3;  //--> optimized (height*10)/30 to (height/3)
+        //Round to the nearest hundredth
+        entry.height = Math.round(height);
+    });
+}
+function makeCalendarEventCards(nestedList){
+    var markup = '',
+        eventCard = document.createDocumentFragment();
+    for(var i = 0; i < nestedList.length; i++){
+        for(var j = 0; j < nestedList[0].length; j++){
+
+        }
+    }
 }

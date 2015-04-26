@@ -36,6 +36,18 @@ describe('Fab Cal', function(){
         expect(list).toEqual(eventsWithHeight)
     });
 
+    it('should be able to evaluate the height for each each event card', function(){
+        var list = [{start: 30, end: 150}, {start: 540, end: 600}, {start: 560, end: 620}, {start: 610, end: 620}],
+            eventsWithHeight = [
+                {start: 30, end: 150, height: 40},
+                {start: 540, end: 600, height: 20},
+                {start: 560, end: 620, height: 20},
+                {start: 610, end: 620, height: 3}];
+
+        suite.evalHeight(list);
+        expect(list).toEqual(eventsWithHeight)
+    });
+
     it('should be able to generate event cards from a comprehensive events list', function(){
         var list = [[{start: 30, end: 150, marginTop: 6.3, width: 90, height: 20}]],
             markup = "<div class='event'style='height:20%;margin-top:6.3%'><p>Sample Item</p>"
