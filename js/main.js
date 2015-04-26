@@ -1,6 +1,6 @@
 var sampleList = [{start: 30, end: 150}, {start: 540, end: 600}, {start: 560, end: 620}, {start: 610, end: 670}];
 function layOutDay(events) {
-    var markup, $div;
+    var markupFragment, $div;
     //Sort events by start time
     events.sort(function(a,b){
         return a.start - b.start;
@@ -19,7 +19,9 @@ function layOutDay(events) {
     evalWidth(events);
 
     //Write markup to it
-    markup = makeCalendarEventCards(events);
+    markupFragment = makeCalendarEventCards(events);
+
+    document.getElementsByClassName('event-container')[0].appendChild(markupFragment);
 }
 function resolveConflicts(list){
     //Group all overlapping events together
@@ -75,10 +77,30 @@ function evalHeight(list){
 }
 function makeCalendarEventCards(nestedList){
     var markup = '',
-        eventCard = document.createDocumentFragment();
+        eventCards = document.createDocumentFragment(),
+        $small = document.createElement('small'),
+        $p = document.createElement('p'),
+        $div = document.createElement('div'),
+        $clonedNode;
+
+        //TODO find interesting items
+        $p.innerHTML = 'Sample Item';
+        $small.innerHTML = 'Sample Location';
+
+
+        $div.className = 'event';
+        $div.appendChild($p);
+        $div.appendChild($small);
+
+
     for(var i = 0; i < nestedList.length; i++){
         for(var j = 0; j < nestedList[0].length; j++){
-
+            $clonedNode = $div.cloneNode(true);
+            $clonedNode.style.width = nestedList[i][j].width;
+            $clonedNode.style.height = nestedList[i][j].height;
+            $clonedNode.style.marginTop = nestedList[i][j].marginTop;
+            eventCards.appendChild($clonedNode);
         }
     }
+    return eventCards;
 }
