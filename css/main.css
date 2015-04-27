@@ -120,6 +120,7 @@ body{box-sizing: border-box;}
 }
 .container > div{
     display: inline-block;
+    vertical-align: top;
     height: 95%;
     margin-top: 5px;
 }
@@ -128,7 +129,19 @@ body{box-sizing: border-box;}
 }
 .time-container > p.fs-large{
     margin: 6px 0px;
-    font-size: 1em;
+    font-size: 0.95em;
+}
+.time-container > p.fs-small {
+    text-align: right;
+    margin-right: 8px;
+}
+.time-container small.fs-small{
+    margin-left: 3px;
+}
+.time-container .fs-small {
+    color: #A9A8A9;
+    text-transform: uppercase;
+    font-size: 60%;
 }
 .events-container{
     background-color: #bababa;
