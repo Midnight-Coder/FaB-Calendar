@@ -94,6 +94,8 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+body{box-sizing: border-box;}
 .css-fb-banner{
     background-color: #3C5C98;
     background-repeat: repeat-x;
@@ -108,28 +110,34 @@ textarea {
     content: 'facebook';
     color: white;
     margin-left: 1em;
-    font: 700 24px/1.3em sans-serif;
+    font: 700 2em/1.3em sans-serif;
 }
 .container{
-    width: 1280px;
+    width: 600px;
     height: 720px;
+    padding: 10px;
+    margin: 5px auto;
+}
+.container > div{
+    display: inline-block;
+    height: 95%;
+    margin-top: 5px;
 }
 .time-container{
-    margin-left: 5em;
-    float: left;
+    width: 10%
+}
+.time-container > p.fs-large{
+    margin: 6px 0px;
+    font-size: 1em;
 }
 .events-container{
-    float: left;
     background-color: #bababa;
-    width: 60%;
-    height: 450px;
-    margin-top: 18px;
-    margin-left: 8px;
-
+    width: 90%;
 }
 .event{
+    display: none;
     background-color: white;
-    float:left;
+    /*float:left;*/
     border: 1px solid black;
     border-left: 5px solid #175BDA;
     /*height of event = (duration in mins * 10%)/30mins */
