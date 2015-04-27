@@ -119,6 +119,7 @@ body{box-sizing: border-box;}
     margin: 5px auto;
 }
 .container > div{
+    /*Align the blocks next to each other */
     display: inline-block;
     vertical-align: top;
     height: 95%;
@@ -128,17 +129,21 @@ body{box-sizing: border-box;}
     width: 10%
 }
 .time-container > p.fs-large{
+    /*Style the HOUR texts*/
     margin: 6px 0px;
     font-size: 0.95em;
 }
 .time-container > p.fs-small {
+    /*Style the 30 min interval texts*/
     text-align: right;
     margin-right: 8px;
 }
 .time-container small.fs-small{
+    /*Style the AM/PM texts*/
     margin-left: 3px;
 }
 .time-container .fs-small {
+    /*Describe the small text*/
     color: #A9A8A9;
     text-transform: uppercase;
     font-size: 60%;
@@ -148,23 +153,20 @@ body{box-sizing: border-box;}
     width: 90%;
 }
 .event{
+    /*Style the event cards*/
     display: none;
     background-color: white;
     /*float:left;*/
     border: 1px solid black;
     border-left: 5px solid #175BDA;
-    /*height of event = (duration in mins * 10%)/30mins */
-    height: 15%;
-    /* width of event = 90%/(num of colliding events) */
-    width: 30%;
-    /*6.3% for every 30 mins*/
-    /*margin-top: 6.3%;*/
 }
 .event > p{
+    /*Style the event text*/
     margin: 3px;
     line-height: 1.3em;
 }
 .jasmine_html-reporter{
+    /*Hide the tests*/
     display: none;
 }
 
