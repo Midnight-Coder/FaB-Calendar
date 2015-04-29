@@ -126,7 +126,9 @@ body{box-sizing: border-box;}
     margin-top: 5px;
 }
 .time-container{
-    width: 10%
+    width: 10%;
+    /*Allows Hrs & AM-PM to share width*/
+    position: relative;
 }
 .time-container > p{
     /*Describes the time blocks*/
@@ -138,6 +140,10 @@ body{box-sizing: border-box;}
 .time-container > p.fs-large{
     /*Style the HOUR texts*/
     font-size: 0.95em;
+    text-align: right;
+    /*Share space with AM/PM on same line*/
+    width: 65%;
+    display: inline-block;
 }
 .time-container > p.fs-small {
     /*Style the 30 min interval texts*/
@@ -146,6 +152,7 @@ body{box-sizing: border-box;}
 }
 .time-container small.fs-small{
     /*Style the AM/PM texts*/
+    display: inline-block;
     margin-left: 3px;
 }
 .time-container .fs-small {

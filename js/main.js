@@ -13,7 +13,7 @@ Methods for Measurements:
 var eventCardDimensions = {
     height: 22,
     width: 93,
-    marginTop: 22,
+    marginTop: 24,
     left: 32
 };
 window.onload = function(){
