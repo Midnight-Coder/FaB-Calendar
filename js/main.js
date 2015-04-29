@@ -11,9 +11,9 @@ Methods for Measurements:
     left: defines the position of the card on the X-axis (for overlaping events)
 */
 var eventCardDimensions = {
-    height: 26,
+    height: 22,
     width: 93,
-    marginTop: 24,
+    marginTop: 22,
     left: 32
 };
 window.onload = function(){
