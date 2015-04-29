@@ -127,7 +127,7 @@ body{box-sizing: border-box;}
 }
 .time-container{
     width: 10%;
-    /*Allows Hrs & AM-PM to share width*/
+    /*Allows Hrs & AM-PM to share widthx*/
     position: relative;
 }
 .time-container > p{
@@ -148,7 +148,7 @@ body{box-sizing: border-box;}
 .time-container > p.fs-small {
     /*Style the 30 min interval texts*/
     text-align: right;
-    margin-right: 15px;
+    margin-right: 7%;
 }
 .time-container small.fs-small{
     /*Style the AM/PM texts*/
@@ -163,8 +163,9 @@ body{box-sizing: border-box;}
 }
 .events-container{
     background-color: #bababa;
-    width: 90%;
+    width: 88%;
     position: relative;
+    margin-left: 1%;
 }
 .event{
     /*Style the event cards*/
