@@ -114,7 +114,7 @@ body{box-sizing: border-box;}
 }
 .container{
     width: 600px;
-    height: 580px;
+    height: 628px;
     padding: 10px;
     margin: 5px auto;
 }
@@ -128,15 +128,21 @@ body{box-sizing: border-box;}
 .time-container{
     width: 10%
 }
+.time-container > p{
+    /*Describes the time blocks*/
+    height: 21px;
+    line-height: 21px;
+    margin-top: 0px;
+    margin-bottom: 3px;
+}
 .time-container > p.fs-large{
     /*Style the HOUR texts*/
-    margin: 0px 0px 3px 0px;
     font-size: 0.95em;
 }
 .time-container > p.fs-small {
     /*Style the 30 min interval texts*/
     text-align: right;
-    margin: 5px 8px;
+    margin-right: 15px;
 }
 .time-container small.fs-small{
     /*Style the AM/PM texts*/
