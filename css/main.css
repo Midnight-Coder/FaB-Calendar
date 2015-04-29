@@ -130,13 +130,13 @@ body{box-sizing: border-box;}
 }
 .time-container > p.fs-large{
     /*Style the HOUR texts*/
-    margin: 6px 0px;
+    margin: 0px 0px 3px 0px;
     font-size: 0.95em;
 }
 .time-container > p.fs-small {
     /*Style the 30 min interval texts*/
     text-align: right;
-    margin-right: 8px;
+    margin: 5px 8px;
 }
 .time-container small.fs-small{
     /*Style the AM/PM texts*/
@@ -151,14 +151,15 @@ body{box-sizing: border-box;}
 .events-container{
     background-color: #bababa;
     width: 90%;
+    position: relative;
 }
 .event{
     /*Style the event cards*/
-    display: none;
     background-color: white;
-    /*float:left;*/
     border: 1px solid black;
     border-left: 5px solid #175BDA;
+    /*Position the card*/
+    position: absolute;
 }
 .event > p{
     /*Style the event text*/
