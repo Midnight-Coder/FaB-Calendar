@@ -172,11 +172,8 @@ body{box-sizing: border-box;}
     background-color: white;
     border-left: 3px solid #175BDA;
     /*Position the card*/
+    box-sizing: border-box;
     position: absolute;
-    /*Straying away from the design*/
-    border-top: 1px solid rgba(199, 57, 57, 0.4);
-    border-right: 1px solid rgba(199, 57, 57, 0.4);
-    border-bottom: 1px solid rgba(199, 57, 57, 0.4);
 }
 .event > p{
     /*Style the event text*/
@@ -193,7 +190,7 @@ body{box-sizing: border-box;}
 }
 .jasmine_html-reporter{
     /*Hide the tests*/
-    display: block;
+    display: none;
 }
 
 
