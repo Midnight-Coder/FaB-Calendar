@@ -84,7 +84,6 @@ function evalWidthAndLeft(eventList){
     var overLappingEvents = groupOverlappingEvents(eventList),
         maxWidth = eventCardDimensions.width * 100,   //*100 -> optimize for rounding to second decimal place
         width, left;
-    console.log(overLappingEvents);
     //Iterate - start with events having max overlap
     overLappingEvents.forEach(function(overlaps, index){
         //ForEach will ignore all undefined events (events which were already defined in another overlapping list)
@@ -107,7 +106,6 @@ function evalWidthAndLeft(eventList){
             delete conflictingMeeting.isProcessed;
         });
     });
-    console.log(eventList);
 }
 
 function evalMarginTop(list){
@@ -134,7 +132,7 @@ function evalHeight(list){
     });
 }
 
-function makeCalendarEventCards(nestedList){
+function makeCalendarEventCards(eventList){
     var markup = '',
         eventCards = document.createDocumentFragment(),
         $small = document.createElement('small'),
@@ -143,25 +141,21 @@ function makeCalendarEventCards(nestedList){
         $clonedNode;
 
         //TODO find interesting items
-        $p.innerHTML = 'Sample Item:';
-        $small.innerHTML = 'Sample Location';
+    $p.innerHTML = 'Sample Item:';
+    $small.innerHTML = 'Sample Location';
 
+    $div.className = 'event';
+    $div.appendChild($p);
+    $div.appendChild($small);
 
-        $div.className = 'event';
-        $div.appendChild($p);
-        $div.appendChild($small);
-
-
-    for(var i = 0; i < nestedList.length; i++){
-        for(var j = 0; j < nestedList[i].length; j++){
-            $clonedNode = $div.cloneNode(true);
-            $clonedNode.children[0].innerHTML +=  nestedList[i][j].start + '-' + nestedList[i][j].end;
-            $clonedNode.style.width = nestedList[i][j].width+'%';
-            $clonedNode.style.height = nestedList[i][j].height+'px';
-            $clonedNode.style.left = nestedList[i][j].left+'%';
-            $clonedNode.style.marginTop = nestedList[i][j].marginTop+'px';
-            eventCards.appendChild($clonedNode);
-        }
+    for(var j = 0; j < eventList.length; j++){
+        $clonedNode = $div.cloneNode(true);
+        $clonedNode.children[0].innerHTML +=  eventList[j].start + '-' + eventList[j].end;
+        $clonedNode.style.width = eventList[j].width+'%';
+        $clonedNode.style.height = eventList[j].height+'px';
+        $clonedNode.style.left = eventList[j].left+'%';
+        $clonedNode.style.marginTop = eventList[j].marginTop+'px';
+        eventCards.appendChild($clonedNode);
     }
     return eventCards;
 }
