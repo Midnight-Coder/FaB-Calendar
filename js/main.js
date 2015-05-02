@@ -16,9 +16,7 @@ var eventCardDimensions = {
     marginTop: 24,
     left: 32
 };
-window.onload = function(){
-    layOutDay(sampleList);
-};
+
 function layOutDay(events) {
     var markupFragment, $div;
     //Sort events by start time
