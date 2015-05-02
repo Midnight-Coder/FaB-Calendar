@@ -32,50 +32,84 @@ function layOutDay(events) {
     //Calculate the height for each event card
     evalHeight(events);
 
-    //Group all overlapping events together -> Aids width calculation
-    events = resolveConflicts(events);
-
-    //Calculate the width of each event card
-    evalWidth(events);
+    //Calculate the width and left(pos) of each event card
+    evalWidthAndLeft(events);
 
     //Write markup to it
     markupFragment = makeCalendarEventCards(events);
 
     document.getElementsByClassName('events-container')[0].appendChild(markupFragment);
 }
-function resolveConflicts(list){
-    //Group all overlapping events together
-    var resolvedList = [],
-        overlap = [list[0]];
-    for(var i=1; i<list.length; i++){
-        if(list[i-1].end < list[i].start){
-            //Separate non overlapping event from the previous list of overlapping events
-            resolvedList.push(overlap);
-            overlap = [list[i]];
+
+function groupOverlappingEvents(list){
+    /*
+        * For each event find overlapping events and maximum #columns required
+        * Optimize by ignoring events that overlap with other events - theta(n^2)
+    */
+    var overlappingEvents = [],
+        maxColumns = 0;
+    list.forEach(function(meeting, index){
+        //Optimization: don't form conflict list for already processed events
+        if(meeting.isProcessed){
+            return;
         }
-        else{
-            //Else club together with the other overlapping events in that timeframe
-            overlap.push(list[i]);
-        }
-    }
-    resolvedList.push(overlap);
-    return resolvedList;
-}
-function evalWidth(nestedList){
-    var k = eventCardDimensions.width * 100,   //*100 -> optimize for rounding to second decimal place
-        width;
-    nestedList.forEach(function(groupOfEvents){
-        //Each event in the group has to have the same width which totals to W (W=90% based on our styles)
-        //Round to the nearest hundredth
-        width = (Math.ceil(k/groupOfEvents.length))/100;
-        groupOfEvents[0].width = width;
-        groupOfEvents[0].left = 0;
-        for(var i = 1; i < groupOfEvents.length; i++){
-            groupOfEvents[i].width = width;
-            groupOfEvents[i].left = eventCardDimensions.left + groupOfEvents[i-1].left;
+        overlappingEvents[index] = [];
+        for(var i = 0; i < list.length; i++){
+            if(i === index){
+                continue;
+            }
+            if(isOverLappingEvents(meeting, list[i])){
+                list[i].isProcessed = true;
+                overlappingEvents[index].push(list[i]);
+            }
         }
     });
+    return overlappingEvents;
 }
+
+function isOverLappingEvents(meeting1, meeting2){
+    //If meeting 1 starts while meeting 2 is in progress
+    if(meeting1.start > meeting2.start && meeting1.start < meeting2.end){
+        return true;
+    }
+    //If meeting 2 starts while meeting 1 is in progress
+    if(meeting2.start > meeting1.start && meeting2.start < meeting1.end){
+        return true;
+    }
+    return false;
+}
+
+function evalWidthAndLeft(eventList){
+//Each event in the group has to have the same width which totals to W (W=93% based on our styles)
+    var overLappingEvents = groupOverlappingEvents(eventList),
+        maxWidth = eventCardDimensions.width * 100,   //*100 -> optimize for rounding to second decimal place
+        width, left;
+    console.log(overLappingEvents);
+    //Iterate - start with events having max overlap
+    overLappingEvents.forEach(function(overlaps, index){
+        //ForEach will ignore all undefined events (events which were already defined in another overlapping list)
+
+        left = 0;
+        //Calc width of each card & round to the nearest hundredth
+
+        width = (Math.ceil(maxWidth/(overlaps.length+1)))/100;
+        eventList[index].left = left;
+        eventList[index].width = width;
+        left += width;
+        overlaps.forEach(function(conflictingMeeting){
+            if(!conflictingMeeting.width){
+                conflictingMeeting.width = width;
+                conflictingMeeting.left = left;
+            }
+            left += width;
+
+            //sanitize the object
+            delete conflictingMeeting.isProcessed;
+        });
+    });
+    console.log(eventList);
+}
+
 function evalMarginTop(list){
     var k = eventCardDimensions.marginTop * 10,   //*10 -> optimization -> precalc of constants
         marginTop;
@@ -86,18 +120,20 @@ function evalMarginTop(list){
         entry.marginTop = Math.ceil(marginTop)/10;
     });
 }
+
 function evalHeight(list){
     var height;
     list.forEach(function(entry){
         //Eval height as the distance from (end-start)
 
         //Round to nearest tens
-        height = (Math.round((entry.end - entry.start)/10))*10
+        height = (Math.round((entry.end - entry.start)/10))*10;
         height = (height*eventCardDimensions.height)/30;
         //Round to the nearest hundredth
         entry.height = Math.round(height);
     });
 }
+
 function makeCalendarEventCards(nestedList){
     var markup = '',
         eventCards = document.createDocumentFragment(),
