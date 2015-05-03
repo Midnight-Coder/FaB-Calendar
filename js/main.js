@@ -1,5 +1,6 @@
 var sampleList = [{start: 30, end: 150}, {start: 540, end: 600}, {start: 560, end: 620}, {start: 610, end: 670}];
                 //{9:30 am - 11:30 am}, {6:00 pm - 7:00 pm}, {6:20 pm - 7:20 pm}, {7:10 pm - 8:10 pm}
+//var sampleList2 = [{start: 5, end: 20}, {start: 10, end: 50}, {start: 15, end: 20}, {start: 30, end: 40}, {start: 45, end: 60}];
 /*
 Methods for Measurements:
     height & margin-top: defines the units 'px' since time events are specified in px.
@@ -18,7 +19,8 @@ var eventCardDimensions = {
 };
 
 function layOutDay(events) {
-    var markupFragment, $div;
+    var $eventsContainer = document.getElementsByClassName('events-container')[0],
+        markupFragment;
     //Sort events by start time
     events.sort(function(a,b){
         return a.start - b.start;
@@ -33,10 +35,12 @@ function layOutDay(events) {
     //Calculate the width and left(pos) of each event card
     evalWidthAndLeft(events);
 
-    //Write markup to it
+    //Generate document fragment for it
     markupFragment = makeCalendarEventCards(events);
 
-    document.getElementsByClassName('events-container')[0].appendChild(markupFragment);
+    //Clear previous enteries and populate it
+    $eventsContainer.innerHTML = null;
+    $eventsContainer.appendChild(markupFragment);
 }
 
 function groupOverlappingEvents(list){
