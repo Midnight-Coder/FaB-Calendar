@@ -78,7 +78,7 @@ function isOverLappingEvents(meeting1, meeting2){
 }
 
 function evalWidthAndLeft(eventList){
-//Each event in the group has to have the same width which totals to W (W=93% based on our styles)
+//Each event in the group has to have the same width W (mandated)
     var overLappingEvents = groupOverlappingEvents(eventList),
         maxWidth = eventCardDimensions.width * 100,   //*100 -> optimize for rounding to second decimal place
         width, left;
@@ -87,9 +87,14 @@ function evalWidthAndLeft(eventList){
         //ForEach will ignore all undefined events (events which were already defined in another overlapping list)
 
         left = 0;
-        //Calc width of each card & round to the nearest hundredth
-
-        width = (Math.ceil(maxWidth/(overlaps.length+1)))/100;
+        //Check if existing event has a width else calc new width
+        /*
+            We need to check only the first overlapping element for presence of width
+            Optimization based on the fact : overlaps[] is sorted by start time (increasing order)
+        */
+        width = (overlaps.length && overlaps[0].width)?
+                overlaps[0].width:
+                (Math.ceil(maxWidth/(overlaps.length+1)))/100;  //Round to 2nd decimal place
         eventList[index].left = left;
         eventList[index].width = width;
         left += width;
