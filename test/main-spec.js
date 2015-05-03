@@ -26,7 +26,7 @@ describe('Fab Cal', function(){
     it('should be able to determine if two events overlap', function(){
         var event1 = {start: 540, end: 600},
             event2 = {start: 560, end: 620};
-        expect(suite.isOverLappingEvents(event1, event2)).toBeTruthy();
+        expect(suite.areOverLappingEvents(event1, event2)).toBeTruthy();
     });
 
     it('should be able to return a list overlapping transactions', function(){

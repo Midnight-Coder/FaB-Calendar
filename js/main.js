@@ -60,7 +60,7 @@ function groupOverlappingEvents(list){
             if(i === index){
                 continue;
             }
-            if(isOverLappingEvents(meeting, list[i])){
+            if(areOverLappingEvents(meeting, list[i])){
                 list[i].isProcessed = true;
                 overlappingEvents[index].push(list[i]);
             }
@@ -69,7 +69,7 @@ function groupOverlappingEvents(list){
     return overlappingEvents;
 }
 
-function isOverLappingEvents(meeting1, meeting2){
+function areOverLappingEvents(meeting1, meeting2){
     //If meeting 1 starts while meeting 2 is in progress
     if(meeting1.start > meeting2.start && meeting1.start < meeting2.end){
         return true;
